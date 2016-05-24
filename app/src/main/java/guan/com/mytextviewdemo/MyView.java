@@ -137,6 +137,7 @@ public class MyView extends View {
                 }
             }
         }
+
         int width;
         int height;
         if (widthMode == MeasureSpec.EXACTLY) {
