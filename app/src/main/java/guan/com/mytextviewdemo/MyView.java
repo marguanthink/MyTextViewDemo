@@ -54,7 +54,7 @@ public class MyView extends View {
         mText = a.getString(R.styleable.MyView_mText);
         mTextColor = a.getColor(R.styleable.MyView_mTextColor, Color.BLACK);
         mTextSize = a.getDimension(R.styleable.MyView_mTextSize, 100);
-        Log.v("openxu", "文本总长度:" + mText);
+        Log.v("MyView", "文本总长度:" + mText);
         mPaint = new Paint();
         mPaint.setTextSize(mTextSize);
         mPaint.setColor(mTextColor);
@@ -63,19 +63,15 @@ public class MyView extends View {
         mPaint.getTextBounds(mText, 0, mText.length(), mBound);
 
     }
-    //API21
-//    public MyTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-//        super(context, attrs, defStyleAttr, defStyleRes);
-//        init();
-//    }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
         //绘制文字
         for (int i = 0; i < mTextList.size(); i++) {
             mPaint.getTextBounds(mTextList.get(i), 0, mTextList.get(i).length(), mBound);
-            Log.v("openxu", "mBound.h:" + mBound.height());
-            Log.v("openxu", "在X:" + (getWidth() / 2 - mBound.width() / 2) + "  Y:" + (getPaddingTop() + (mBound.height() * i)) + "  绘制：" + mTextList.get(i));
+            Log.v("MyView", "mBound.h:" + mBound.height());
+            Log.v("MyView", "在X:" + (getWidth() / 2 - mBound.width() / 2) + "  Y:" + (getPaddingTop() + (mBound.height() * i)) + "  绘制：" + mTextList.get(i));
             canvas.drawText(mTextList.get(i), (getWidth() / 2 - mBound.width() / 2), (getPaddingTop() + (mBound.height() * i)), mPaint);
         }
     }
@@ -91,10 +87,10 @@ public class MyView extends View {
         int heightMode = MeasureSpec.getMode(heightMeasureSpec); //获取高的模式
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);   //获取宽的尺寸
         int heightSize = MeasureSpec.getSize(heightMeasureSpec); //获取高的尺寸
-        Log.v("openxu", "宽的模式:" + widthMode);
-        Log.v("openxu", "高的模式:" + heightMode);
-        Log.v("openxu", "宽的尺寸:" + widthSize);
-        Log.v("openxu", "高的尺寸:" + heightSize);
+        Log.v("MyView", "宽的模式:" + widthMode);
+        Log.v("MyView", "高的模式:" + heightMode);
+        Log.v("MyView", "宽的尺寸:" + widthSize);
+        Log.v("MyView", "高的尺寸:" + heightSize);
 
         float textWidth = mBound.width();   //文本的宽度
         if (mTextList.size() == 0) {
@@ -115,11 +111,11 @@ public class MyView extends View {
                     lineNum = spLineNum;
                 }
                 int lineLength = (int) (mText.length() / spLineNum);
-                Log.v("openxu", "文本总长度:" + mText);
-                Log.v("openxu", "文本总长度:" + mText.length());
-                Log.v("openxu", "能绘制文本的宽度:" + lineLength);
-                Log.v("openxu", "需要绘制:" + lineNum + "行");
-                Log.v("openxu", "lineLength:" + lineLength);
+                Log.v("MyView", "文本总长度:" + mText);
+                Log.v("MyView", "文本总长度:" + mText.length());
+                Log.v("MyView", "能绘制文本的宽度:" + lineLength);
+                Log.v("MyView", "需要绘制:" + lineNum + "行");
+                Log.v("MyView", "lineLength:" + lineLength);
                 for (int i = 0; i < lineNum; i++) {
                     String lineStr;
                     if (mText.length() < lineLength) {
@@ -127,7 +123,7 @@ public class MyView extends View {
                     } else {
                         lineStr = mText.substring(0, lineLength);
                     }
-                    Log.v("openxu", "lineStr:" + lineStr);
+                    Log.v("MyView", "lineStr:" + lineStr);
                     mTextList.add(lineStr);
                     if (!TextUtils.isEmpty(mText)) {
                         if (mText.length() < lineLength) {
@@ -155,7 +151,7 @@ public class MyView extends View {
                 //如果是多行，说明控件宽度应该填充父窗体
                 width = widthSize;
             }
-            Log.v("openxu", "文本的宽度:" + textWidth + "控件的宽度：" + width);
+            Log.v("MyView", "文本的宽度:" + textWidth + "控件的宽度：" + width);
         }
         //高度跟宽度处理方式一样
         if (heightMode == MeasureSpec.EXACTLY) {
@@ -170,7 +166,7 @@ public class MyView extends View {
                 ;
             }
 
-            Log.v("openxu", "文本的高度:" + textHeight + "控件的高度：" + height);
+            Log.v("MyView", "文本的高度:" + textHeight + "控件的高度：" + height);
         }
         //保存测量宽度和测量高度
         setMeasuredDimension(width, height);
